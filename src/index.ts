@@ -1,11 +1,16 @@
 import express, { Express,Request,Response } from "express";
+import mongoose from "mongoose";
+import dotenv from 'dotenv';
+dotenv.config();
+
 const app: Express = express();
-app.listen(2000, () => {
-  console.log("server is running on port 2000!");
-});
 
-
-app.get('/',(req:Request,res:Response)=>{
-    res.json({message:"Hello World"})
-
+mongoose.connect("mongodb+srv://damianpeiris:"+process.env.MONGODB_PASSWORD+"@streamzdb.qcqbh9t.mongodb.net/?retryWrites=true&w=majority")
+.then(()=>{
+  console.log("Connected to database!")
+}).catch((er)=>{
+  console.log("Something went wrong! : "+er)
 })
+
+
+
