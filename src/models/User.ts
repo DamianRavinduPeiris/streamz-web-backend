@@ -5,14 +5,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Name is required!"],
     },
-    userName: {
+    email: {
       type: String,
       required: [true, "Username is required!"],
       unique: true,
     },
-    password: {
+    profilePic: {
       type: String,
-      required: [true, "Password is required!"],
+      unique: true,
     },
     favouriteList: {
       type: [Number],
