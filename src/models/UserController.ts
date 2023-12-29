@@ -24,12 +24,12 @@ userController.post("/saveUser", async (req: Request, res: Response) => {
 
 userController.get("/search", async (req: Request, res: Response) => {
   try {
-    const userName: string =
-      typeof req.query.username === "string" ? req.query.username : "";
-    const usersList = await User.find({ userName });
-    if (usersList.length > 0) return res.status(302).json(usersList);
+    const email: string =
+      typeof req.query.email === "string" ? req.query.email : "";
+    const usersList = await User.find({ email });
+    if (usersList.length > 0) return res.status(302).json({msg : "User Successfully retrieved!",data : usersList,isExists : true});
     else {
-      return res.status(404).json({ msg: "User not found!" });
+      return res.status(404).json({ msg: "User not found!" ,data:null,isExists : false});
     }
   } catch (error) {
     console.log("An error occurred : " + error);
