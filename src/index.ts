@@ -1,7 +1,7 @@
 import express, { Express,Request,Response } from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
-import userController from "./models/UserController";
+import userController from "./controllers/UserController";
 
 dotenv.config();
 

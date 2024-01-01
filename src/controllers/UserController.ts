@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import { generateJWT ,authenticateToken} from "../auth/Auth";
-import User from "./User";
+import User from "../models/User";
 import UserType from "../types/UserTypes";
 const userController = express.Router();
 userController.use(express.json());
@@ -12,9 +12,7 @@ userController.post("/saveUser", async (req: Request, res: Response) => {
   console.log(req.body);
   try {
     const data = await User.create(req.body);
-    return res
-      .status(201)
-      .json({ msg: "User Successfully Saved!", isSaved: true });
+    return generateJWT(req,res,req.body);
   } catch (error) {
     console.log("An Error occurred : " + error);
     return res
@@ -57,4 +55,5 @@ userController.get("/test", (req: Request, res: Response) => {
 userController.get("/testAuth", authenticateToken, (req, res) => {
   return res.status(200).json({ msg: "Token verified!" });
 });
+
 export default userController;
