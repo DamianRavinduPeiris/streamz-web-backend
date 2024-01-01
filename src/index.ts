@@ -2,6 +2,7 @@ import express, { Express,Request,Response } from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import userController from "./models/UserController";
+
 dotenv.config();
 
 const app: Express = express();
