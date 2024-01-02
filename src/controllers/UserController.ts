@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from "express";
-import { generateJWT ,authenticateToken} from "../auth/Auth";
+import { generateJWT, authenticateToken } from "../auth/Auth";
 import User from "../models/User";
 import UserType from "../types/UserTypes";
 const userController = express.Router();
@@ -12,7 +12,7 @@ userController.post("/saveUser", async (req: Request, res: Response) => {
   console.log(req.body);
   try {
     const data = await User.create(req.body);
-    return generateJWT(req,res,req.body);
+    return generateJWT(req, res, req.body);
   } catch (error) {
     console.log("An Error occurred : " + error);
     return res
@@ -46,6 +46,23 @@ userController.get("/search", async (req: Request, res: Response) => {
       data: null,
       isExists: false,
     });
+  }
+});
+userController.put("/update",authenticateToken, async (req: Request, res: Response) => {
+  const user: UserType = {
+    name: req.body.name,
+    email: req.body.email,
+    profilePic: req.body.profilePic,
+    favouriteList: req.body.favouriteList,
+    historyList: req.body.historyList,
+  };
+  try {
+    let data = await User.updateOne({ email: user.email }, user);
+    if(data)res.status(200).json({msg: "User updated successfully!", isUpdated: true,data:null});
+    else res.status(200).json({msg: "User not found!", isUpdated: false,data:null});
+  } catch (error) {
+      res.status(500).json({msg: "Something went wrong : " + error, isUpdated: false,data:null});
+
   }
 });
 userController.get("/test", (req: Request, res: Response) => {

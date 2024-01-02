@@ -15,6 +15,7 @@ export function authenticateToken(req:Request,res:Response,next:NextFunction){
     if(token==null)return res.status(401).json({"msg":"Token not found!"});
     jwt.verify(token,process.env.JWT_ACCESS_TOKEN_SECRET as string,(err,user)=>{
         if(err)return res.status(403).json({"msg":"Token not verified!",err});
+        // Making user info available in the next middleware.
         req.body.user = user;
         next();
     })
