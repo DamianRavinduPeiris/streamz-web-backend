@@ -55,10 +55,11 @@ userController.put("/update",authenticateToken, async (req: Request, res: Respon
     profilePic: req.body.profilePic,
     favouriteList: req.body.favouriteList,
     historyList: req.body.historyList,
+    watchLaterList: req.body.watchLaterList
   };
   try {
-    let data = await User.updateOne({ email: user.email }, user);
-    if(data)res.status(200).json({msg: "User updated successfully!", isUpdated: true,data:null});
+    let data = await User.findOneAndUpdate({ email: user.email }, user);
+    if(data)res.status(200).json({msg: "User updated successfully!", isUpdated: true,data:data});
     else res.status(200).json({msg: "User not found!", isUpdated: false,data:null});
   } catch (error) {
       res.status(500).json({msg: "Something went wrong : " + error, isUpdated: false,data:null});

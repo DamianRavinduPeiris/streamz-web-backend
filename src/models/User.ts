@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema(
       type: [Number],
       default: [],
     },
+    watchLaterList : {
+      type: [Number],
+      default: [],
+    }
   },
   {
     timestamps: true,
