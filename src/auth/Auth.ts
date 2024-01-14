@@ -6,7 +6,7 @@ dotenv.config();
 
 export function generateJWT(request: Request, response: Response,user:UserType) {
     const jwtToken = jwt.sign(user,process.env.JWT_ACCESS_TOKEN_SECRET as string);
-    return response.json({jwt : jwtToken,isSaved : true,msg : "User Saved Successfully!"});
+    return response.json({jwt : jwtToken,isSaved : true,msg :"User Saved Successfully!"});
     
 }
 export function authenticateToken(req:Request,res:Response,next:NextFunction){

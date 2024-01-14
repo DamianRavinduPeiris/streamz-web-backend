@@ -4,9 +4,6 @@ import User from "../models/User";
 import UserType from "../types/UserTypes";
 const userController = express.Router();
 userController.use(express.json());
-userController.get("/", (req: Request, res: Response) => {
-  res.json({ message: "Fuck you All!" });
-});
 
 userController.post("/saveUser", async (req: Request, res: Response) => {
   console.log(req.body);

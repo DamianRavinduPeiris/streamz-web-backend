@@ -2,11 +2,13 @@ import express, { Express,Request,Response } from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import userController from "./controllers/UserController";
+import adminController from './controllers/AdminController'
 
 dotenv.config();
 
 const app: Express = express();
 app.use('/user',userController)
+app.use('/admin',adminController)
 
 app.listen(3000,()=>{
   console.log('Server Started at Port 3000!')
