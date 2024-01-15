@@ -11,10 +11,7 @@ userController.post("/saveUser", async (req: Request, res: Response) => {
     const data = await User.create(req.body);
     return generateJWT(req, res, req.body);
   } catch (error) {
-    console.log("An Error occurred : " + error);
-    return res
-      .status(200)
-      .json({ msg: "An error occurred!" + error, isSaved: false });
+    return res.status(200).json({ msg: "An error occurred!" + error, isSaved: false });
   }
 });
 
