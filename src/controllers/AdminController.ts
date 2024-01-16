@@ -4,6 +4,7 @@ import adminType from "../types/AdminType";
 import Admin from "../models/Admin";
 import bcrypt from "bcrypt";
 import hashPassword from "../util/PasswordHasher";
+
 const adminController = express.Router();
 
 adminController.use(express.json());
@@ -13,7 +14,7 @@ adminController.post("/signup", async (req: Request, res: Response) => {
     req.body.password = hashedPW;
     await Admin.create(req.body);
     return generateJWT(req, res, req.body);
-  } catch (error:any) {
+  } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }
 });
@@ -39,7 +40,7 @@ adminController.get(
 );
 adminController.delete(
   "/delete",
-  authenticateToken,
+
   async (req: Request, res: Response) => {
     try {
       let response = await Admin.findOneAndDelete({ email: req.query.email });
@@ -57,5 +58,36 @@ adminController.delete(
     }
   }
 );
+
+adminController.post(
+  "/login",
+  authenticateToken,
+  async (req: Request, res: Response) => {
+    try {
+      let admin = await Admin.findOne({ email: req.query.email });
+      let userPW:string = req.query.password as string;
+      let pw :string = admin?.password as string;
+      bcrypt.compare(userPW, pw, (err, result) => {
+        if (err) {
+          return res.status(401).json({ message: "Auth Failed" });
+        }
+        if (result) {
+          return res.status(200).json({isAuthorized : true,message :"Authorized"});
+        }
+        return res.status(401).json({ message: "Auth Failed" });
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+);
+adminController.get("/getAll", async (req: Request, res: Response) => {
+  try {
+    let response = await Admin.find({});
+    return res.status(200).json(response);
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+});
 
 export default adminController;
