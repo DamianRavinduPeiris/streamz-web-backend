@@ -64,8 +64,8 @@ adminController.post(
   authenticateToken,
   async (req: Request, res: Response) => {
     try {
-      let admin = await Admin.findOne({ email: req.query.email });
-      let userPW:string = req.query.password as string;
+      let admin = await Admin.findOne({ email: req.body.email });
+      let userPW:string = req.body.password as string;
       let pw :string = admin?.password as string;
       bcrypt.compare(userPW, pw, (err, result) => {
         if (err) {
@@ -74,7 +74,7 @@ adminController.post(
         if (result) {
           return res.status(200).json({isAuthorized : true,message :"Authorized"});
         }
-        return res.status(401).json({ message: "Auth Failed" });
+        return res.status(200).json({ message: "Auth Failed!" });
       });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
