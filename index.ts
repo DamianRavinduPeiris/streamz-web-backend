@@ -1,8 +1,8 @@
 import express, { Express,Request,Response } from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
-import userController from "./controllers/UserController";
-import adminController from './controllers/AdminController'
+import userController from "./src/controllers/UserController";
+import adminController from './src/controllers/AdminController'
 
 dotenv.config();
 
