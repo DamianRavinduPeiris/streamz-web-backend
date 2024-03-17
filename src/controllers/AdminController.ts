@@ -20,7 +20,7 @@ adminController.post("/signup", async (req: Request, res: Response) => {
 });
 adminController.get(
   "/search",
-  authenticateToken,
+
   async (req: Request, res: Response) => {
     try {
       let adminsList = await Admin.find({ email: req.query.email });
@@ -61,7 +61,7 @@ adminController.delete(
 
 adminController.post(
   "/login",
-  authenticateToken,
+  
   async (req: Request, res: Response) => {
     try {
       let admin = await Admin.findOne({ email: req.body.email });

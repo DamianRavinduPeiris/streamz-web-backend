@@ -46,7 +46,7 @@ userController.get("/search", async (req: Request, res: Response) => {
 });
 userController.put(
   "/update",
-  authenticateToken,
+ 
   async (req: Request, res: Response) => {
     const user: UserType = {
       name: req.body.name,
@@ -79,7 +79,7 @@ userController.put(
 );
 userController.get(
   "/getAll",
-  authenticateToken,
+ 
   async (req: Request, res: Response) => {
     try {
       let response = await User.find({});
