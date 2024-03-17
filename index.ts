@@ -3,10 +3,12 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import userController from "./src/controllers/UserController";
 import adminController from './src/controllers/AdminController'
+import cors from 'cors';
 
 dotenv.config();
 
 const app: Express = express();
+app.use(cors());
 app.use('/user',userController)
 app.use('/admin',adminController)
 
