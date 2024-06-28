@@ -1,6 +1,5 @@
 import express, { Express, Request, Response } from "express";
 import { authenticateToken, generateJWT } from "../auth/Auth";
-import adminType from "../types/AdminType";
 import Admin from "../models/Admin";
 import bcrypt from "bcrypt";
 import hashPassword from "../util/PasswordHasher";

@@ -48,6 +48,7 @@ userController.put(
   "/update",
  
   async (req: Request, res: Response) => {
+    console.log(req.body.profilePic)
     const user: UserType = {
       name: req.body.name,
       email: req.body.email,
@@ -58,6 +59,7 @@ userController.put(
     };
     try {
       let data = await User.findOneAndUpdate({ email: user.email }, user);
+      console.log('Updated : ',data)
       if (data)
         res.status(200).json({
           msg: "User updated successfully!",
