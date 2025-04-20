@@ -1,10 +1,16 @@
 # Streamz
 
-**Streamz is your ultimate streaming companion.**
+This is the **backend** repository of **Streamz**.
 
-This is the **backend** repository of **Streamz**, a web application built using the **MERN stack**.  
+Frontend repository can be found in [here](https://github.com/DamianRavinduPeiris/streamz-web).
 
-Frontend repository can be found [here](https://github.com/DamianRavinduPeiris/streamz-web).
+## Preview
+
+![Streamz Web Preview](https://github.com/DamianRavinduPeiris/streamz-web/assets/115478137/a0acb6b0-c969-4da6-919e-1a61fe98fbac)
+
+![image](https://github.com/user-attachments/assets/067500d7-30e6-4bb3-8f2e-784270ae1003)
+
+![image](https://github.com/user-attachments/assets/e79ab2b2-95f5-4f73-828c-8b97e8d8d6a7)
 
 
 ## Installation and Setup
@@ -51,9 +57,6 @@ Ensure you have the following installed:
    yarn start
    ```
 
-## Preview
-
-![Streamz Preview](https://github.com/DamianRavinduPeiris/streamz-web/assets/115478137/a0acb6b0-c969-4da6-919e-1a61fe98fbac)
 
 
 ## Contribution Guidelines
